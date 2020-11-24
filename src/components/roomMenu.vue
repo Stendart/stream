@@ -1,18 +1,12 @@
 <template>
+        <div class="canvas " >
+            <flatInfo v-if="getIsShowFlat" class="flatInfo"></flatInfo>
+            <div class="line"></div>
+            <!--:class="{canvUp: isShowRensa, canvDown: !isShowRensa}"-->
+            <!--<flatImg v-if="getIsShowFlat"></flatImg>-->
+            <FilterRoom v-if="!getIsShowFlat"></FilterRoom>
+        </div>
 
-    <transition name="fade">
-    <div class="canvas" >
-
-        <flatInfo v-if="getIsShowFlat" class="flatInfo"></flatInfo>
-        <div class="line"></div>
-
-        <!--<flatImg v-if="getIsShowFlat"></flatImg>-->
-        <FilterRoom v-if="!getIsShowFlat"></FilterRoom>
-        <verticalSlider v-if="isShowRensa"></verticalSlider>
-
-        <!--<ButtonBottom class="btn-margin"></ButtonBottom>-->
-    </div>
-    </transition>
 </template>
 
 <script>
@@ -43,10 +37,10 @@
         },
         components: {
             FilterRoom,
-            ButtonBottom,
+            //ButtonBottom,
             flatInfo,
-            flatImg,
-            verticalSlider
+            //flatImg,
+            //verticalSlider
         },
 
         computed: {
@@ -68,76 +62,24 @@
 <style scoped>
     .canvas {
         width: 360px;
-
         border-radius: 30px 30px 0 0;
         background-color: #fff;
-        /*height: 200px;*/
         display: flex;
         flex-direction: column;
         align-items: center;
 
         transition: all 1.1s;
     }
-.ca {
-    height: 1000px;
-}
+
     .canvas .flatInfo {
         width: 90%;
     }
 
-    .fade-enter-active, .fade-leave-active {
-        transition: all 1.1s;
-    }
-    .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-        height: 100%;
-    }
-
-    .headMenu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 95%;
-    }
-
-    .swipeLine {
-        width: 53px;
-        height: 0.1px;
-        border: solid 1px #d0d0d0;
-        cursor: pointer
-    }
 
     .line {
-        width: 100%;
+        width: 99.5%;
         height: .1px;
         border: solid 1px #e5e5ea
     }
-    .button {
 
-        /*margin-top: 5px;*/
-        color: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        user-select: none;
-        outline: none;
-        cursor: pointer;
-    }
-
-    .buttonSize {
-        width: 44px;
-        height: 44px;
-    }
-
-    .btn-margin {
-        margin-top: 25px;
-        margin-bottom: 20px;
-    }
-
-    .anim {
-        transition-property: transform;
-        transition-duration: 1.1s;
-    }
-    .hide{
-        transform: translateY(100%);
-    }
 </style>

@@ -18,9 +18,6 @@
                     >
             </headerMenu>
 
-            <!--<span @click="returnToMain" class="closeIcn" v-if="getIsListCardSearch">X</span>
-            <span @click="returnToRoomMenu" class="closeIcn" v-else>←</span>
-            <swipeLine></swipeLine>-->
             <div class="search" v-if="getIsListCardSearch">
                 <input type="search">
                 <span class="icon"><img src="../assets/Search-H-M.png" alt=""></span>

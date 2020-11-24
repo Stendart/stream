@@ -2,7 +2,7 @@
     <div class="contBtn">
         <div class="btn visa" :class="{smalBtn: isVisin}" @click="isVisin=!isVisin">
             <img src="../assets/Button_bottom/Search-H-M-white.png" alt="">
-            <span>Visa lägenheter</span>
+            <span> {{ btn_text }}</span>
         </div>
         <div class="btn hideOnVisa">
             <span >Rensa</span>
@@ -16,6 +16,15 @@
         data () {
             return {
                 isVisin: false
+            }
+        },
+        props: {
+            btn_text: String,
+            clickFn: {
+                type: Function,
+                default: () => {
+                    this.isVisin=!this.isVisin
+                }
             }
         }
     }

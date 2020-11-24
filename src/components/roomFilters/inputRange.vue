@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="prise">Pris</div>
+        <div class="prise"> {{ title }}</div>
         <vue-range-slider
                 v-model="value"
                 :min="min"
@@ -21,7 +21,8 @@
 <script>
     import 'vue-range-component/dist/vue-range-slider.css'
     import './inputRange.css'
-    import VueRangeSlider from 'vue-range-component'
+    //import VueRangeSlider from 'vue-range-component'
+    import VueRangeSlider from './inputRange'
 
     export default {
         name: "inputRange",
@@ -29,6 +30,9 @@
             return {
                 value: [0,15]
             }
+        },
+        props: {
+            title: String
         },
         created() {
             this.min = 0

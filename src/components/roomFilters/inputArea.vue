@@ -3,14 +3,25 @@
         <div>Area</div>
         <input type="text"
                class="inputArea"
-               placeholder="25 kvm - 200+ kvm">
+               :placeholder="getSlidesMinVal + ` - ` + getSlidesMaxVal">
 
     </div>
 </template>
 
 <script>
     export default {
-        name: "inputArea"
+        name: "inputArea",
+        computed: {
+            getSlidesMinVal () {
+                console.log(this.$store.getters.getSlidesMinVal)
+                return this.$store.getters.getSlidesMinVal;
+            },
+
+            getSlidesMaxVal () {
+                console.log(this.$store.getters.getSlidesMaxVal)
+                return this.$store.getters.getSlidesMaxVal;
+            }
+        }
     }
 </script>
 

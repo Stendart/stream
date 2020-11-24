@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="canvasMenu canvas" v-if="getVisible">
+        <div class="canvasMenu canvas" v-if="getVisible" >
 
             <!--<div class="headMenu">
                 <div class="button buttonSize" @click="hideCanvasMenu">╳</div>
@@ -12,7 +12,8 @@
             </div>-->
             <headerMenu :btnMethod="hideCanvasMenu"></headerMenu>
             <router-view />
-            <ButtonBottom class="btn-margin"></ButtonBottom>
+            <!--<ButtonBottom class="btn-margin"
+            :btn_text="`Visa lägenheter`"></ButtonBottom>-->
         </div>
     </transition>
 </template>
@@ -38,13 +39,19 @@
             }
         },
         methods: {
-            showArea () {
+            /*showArea () {
                 //this.isShowRensa = !this.isShowRensa;
                 let isShowRensa = this.$store.getters.getIsShowRensa;
                 console.log(isShowRensa)
                 this.$store.commit("updateIsShowRensa", !isShowRensa)
-            },
+            },*/
 
+            hideHeader(e) {
+              console.log(`Ghjdthrf`)
+              console.log(e)
+                e.passive=true
+
+            },
             hideCanvasMenu () {
                 this.$router.push("/");
                 let isVisible = this.$store.getters.getVisible;
@@ -77,6 +84,9 @@
         position: absolute;
         bottom: 0;
         max-height: 100%;
+
+        overflow-y: auto;
+        overflow-x: auto;
     }
 
 
@@ -87,7 +97,7 @@
     }
 
     .fade-enter-active, .fade-leave-active {
-        transition: transform .1s;
+        transition: transform 1.1s;
     }
     .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
         transform: translateY(100%);

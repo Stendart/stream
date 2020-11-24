@@ -2,16 +2,21 @@
     <div>
         <div class="mainMenu" :class="{opened: open}">
             <div class="leftMenuPart">
+                <div class="button" @click=""><img src="../assets/MainMenu/marker.png" alt=""></div>
                 <div class="button" @click="openCanvasMenu"><img src="../assets/Filter-icon.png" alt=""></div>
             </div>
             <div class="rightMenuPart">
-                <div class="button" @click="openSearch"><img src="../assets/Search-H-M.png" alt=""></div>
                 <div class="button"><img src="../assets/Sun.png" alt=""></div>
+                <div class="button" @click="openSearch"><img src="../assets/Search-H-M.png" alt=""></div>
             </div>
             <!--  primary button -->
             <div class="openMenuButton" @click="openMenu">
                 <span class="openMenuButtonIcon"></span>
             </div>
+        </div>
+
+        <div class="button reloadBtn">
+            <img src="../assets/MainMenu/reloadArr.png" alt="" >
         </div>
     </div>
 </template>
@@ -56,6 +61,21 @@
 
         position: absolute;
         bottom: 10%;
+    }
+
+    .opened {
+        z-index: 2;
+    }
+
+    .reloadBtn {
+        background: #fff;
+        border-radius: 50%;
+
+        position: absolute;
+        bottom: 11%;
+        left: 60%;
+        box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
+        z-index: 0;
     }
 
     .openMenuButton {

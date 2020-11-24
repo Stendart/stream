@@ -1,47 +1,84 @@
 <template>
   <div id="app" >
 
-      <!--<Menu class="menu"></Menu>-->
-      <button @click="showFlat">Show flat</button>
-      <!--<button @click="showCarousel">Show carousel</button>-->
+     <div class="mFrame">
+        <button @click="showFlat">Show flat</button>
+        <button @click="showData">Show data</button>
+        <!--<button @click="showCarousel">Show carousel</button>-->
 
-    <router-view />
-
-
+        <router-view />
+    </div>
   </div>
 </template>
 
 <script>
 import Menu from './components/Menu.vue'
+import mountFrame from './components/mountFrame'
 
 
 
 export default {
-  name: 'App',
-  components: {
-    Menu,
+    name: 'App',
+    data() {
+        return {
+            loaded: false,
+            iframe: {
+                src: window.location.href,
+                style: {
+                    width:100 + '%',
+                    height:100 + 'vh',
 
+                },
+                //wrapperStyle: null,
+            }
+        }
+    },
+    components: {
+      Menu,
+      mountFrame
   },
     methods: {
         showFlat() {
-            this.$router.push("/menu/showFlat")
-            /*let isShowFlat = this.$store.getters.getIsShowFlat;
-            console.log('isShowFlat ', isShowFlat)
-            this.$store.commit("updateIsShowFlat", !isShowFlat)*/
-        },
+                this.$router.push("/menu/showFlat")
+                /*let isShowFlat = this.$store.getters.getIsShowFlat;
+                console.log('isShowFlat ', isShowFlat)
+                this.$store.commit("updateIsShowFlat", !isShowFlat)*/
+            },
 
-        showCarousel() {
-            this.$router.push("/menu/verticalSlider")
-        }
+            showCarousel() {
+                this.$router.push("/menu/verticalSlider")
+            },
+
+            showData() {
+                this.$router.push("/menu/showDataTime")
+            }
     },
     computed: {
-        getVisible () {
-            return this.$store.getters.getVisible;
-        },
+         getVisible () {
+                return this.$store.getters.getVisible;
+            },
 
-        getIsOpenSearch () {
-            return this.$store.getters.getIsOpenSearch;
+            getIsOpenSearch () {
+                return this.$store.getters.getIsOpenSearch;
+            }
+    },
+
+    mounted() {
+        console.log(mountFrame)
+        /*let editor = this.$refs.editor;
+        this.iframe.style = {
+            position: 'absolute',
+            width: window.innerWidth,
+            height: window.innerHeight,
+            top: -editor.offsetTop + "px",
+            left: -editor.offsetLeft + "px",
         }
+        this.iframe.wrapperStyle = {
+            overflow: 'hidden',
+            height: editor.clientHeight + "px",
+            width: editor.clientWidth + "px",
+        }*/
+        //this.loaded = true;
     }
 }
 </script>
@@ -68,10 +105,10 @@ export default {
     background-color: antiquewhite;
     background-image: url("assets/bg.png");
     background-repeat: no-repeat;
-    /*height: 100vh;*/
+    height: 100vh;
     min-height: 100vh;
-    /* mobile viewport bug fix */
     min-height: -webkit-fill-available;
+    /* mobile viewport bug fix */
 
     position: relative;
     overflow-y: hidden;
@@ -102,13 +139,17 @@ export default {
 
 }
 
+.mFrame {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-
-input, input:before, input:after {
+/*input, input:before, input:after {
     -webkit-user-select: initial;
     -khtml-user-select: initial;
     -moz-user-select: initial;
     -ms-user-select: initial;
     user-select: initial;
-}
+}*/
 </style>

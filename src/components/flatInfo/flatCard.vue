@@ -1,7 +1,9 @@
 <template>
     <div class="card">
         <div class="vertLine"></div>
-        <flatImg width="83px" height="60px" class="img"></flatImg>
+        <div  class="img img-cont">
+            <flatImg></flatImg>
+        </div>
         <div class="cardText">
             <div class="prise"><span>Nr 61402</span> <span class="till">Till salu</span></div>
             <div class="rok-kvm">2 rok, 55 kvm</div>
@@ -64,6 +66,11 @@
     .img {
         margin-top: 7px;
         height: 60px;
+    }
+
+    .img-cont {
+        width:83px;
+        height:60px;
     }
 
     .prise {

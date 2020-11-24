@@ -1,9 +1,15 @@
 <template>
-    <div class="canvas canvasHeight">
+    <div class=" canvasHeight">
         <!--<inputArea class="inpAr"></inputArea>-->
         <div class="carousels carousels-margin">
-            <verticalCarousel class="carousel border-r"></verticalCarousel>
-            <verticalCarousel class="carousel"></verticalCarousel>
+            <verticalCarousel class="carousel border-r"
+                              :slides="slidesMin"
+                              name-var-vall="updateSlidesMinVal">
+            </verticalCarousel>
+            <verticalCarousel class="carousel"
+                              :slides="slidesMax"
+                              name-var-vall="updateSlidesMaxVal">
+            </verticalCarousel>
         </div>
 
     </div>
@@ -14,6 +20,12 @@
     import verticalCarousel from "./verticalCarousel";
     export default {
         name: "verticalSlider",
+        data() {
+            return {
+                slidesMin: ['Inged min', '20 m2', '25 m2', '30 m2', '35 m2', '40 m2'],
+                slidesMax: ['Inged max', '200 m2', '250 m2', '300 m2', '350 m2', '400 m2'],
+            }
+        },
         components: {
             inputArea,
             verticalCarousel
@@ -28,8 +40,8 @@
 
     .carousels {
         display: flex;
-        width: 95%;
-        height: 120px;
+        /*width: 95%;*/
+        height: 160px;
     }
 
     .carousels-margin {
@@ -37,7 +49,7 @@
     }
 
     .carousel {
-        width: 100%;
+        width: 50%;
     }
 
     .border-r {
@@ -47,4 +59,5 @@
     .inpAr {
         width: 95%;
     }
+
 </style>

@@ -33,8 +33,34 @@ export default new Router({
                 },
                 {
                     path: 'showFlat',
-                    component: () => import("./components/flatInfo/flatImg")
+                    component: () => import("./components/flatInfo/flatMenu")
                 },
+                {
+                    path: 'showDataTime',
+                    component: () => import("./components/DataTime/DataTimeFilter")
+                },
+                /*{
+                    path: 'showData',
+                    component: () => import("./components/DataTime/DataFilter")
+                },*/
+                /*{
+                    path: 'showTime',
+                    component: () => import("./components/DataTime/TimeFilter")
+                },*/
+            ]
+        },
+        {
+            path: "/showDataTime",
+            component: () => import("./components/DataTime/canvasDataTime"),
+            children: [
+                {
+                    path: "showData",
+                    component: () => import("./components/DataTime/DataFilter"),
+                },
+                {
+                    path: "showTime",
+                    component: () => import("./components/DataTime/TimeFilter"),
+                }
             ]
         },
         {

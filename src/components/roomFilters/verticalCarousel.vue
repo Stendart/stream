@@ -1,16 +1,17 @@
 <template>
     <div class="hooper-wraper">
-        <div class="slide-border"></div>
+        <div class="slide-border" v-if="isShow"></div>
 
         <!--<div class="head"> Inged min </div>-->
-        <hooper class="hooper" ref="carousel" @slide="updateCarousel" @afterSlide="aft"
+        <hooper class="hooper" ref="carousel"
                 :vertical="true"
-                :itemsToShow="2.5"
+                :itemsToShow="5"
+                :centerMode="true"
 
-                :infiniteScroll="true"
+                @slide="getCurentVal"
         >
             <slide v-for="(slide, indx) in slides" :key="indx" :index="indx" class="slide">
-                {{ slide }} m2
+                {{ slide }}
             </slide>
         </hooper>
     </div>
@@ -24,8 +25,7 @@
         name: "verticalCarousel",
         data() {
             return {
-                slides: ['Inged min', '20', '25', '30', '35', '40'],
-                hooperSettings: {
+                /*hooperSettings: {
                     itemsToShow: 2,
                     centerMode: true,
                     breakpoints: {
@@ -38,22 +38,30 @@
                             pagination: 'fraction'
                         }
                     }
-                },
+                },*/
                 bol:false,
 
             }
         },
-        watch: {
-            carouselData () {
-                this.$refs.carousel.slideTo(this.carouselData);
+        props: {
+            slides: Array,
+            nameVarVall: String,
+            isShow: {
+                type: Boolean,
+                default: true
             }
+        },
+        watch: {
+            /*carouselData () {
+                this.$refs.carousel.slideTo(this.carouselData);
+            }*/
         },
         components: {
             Hooper,
             Slide
         },
         methods: {
-            slidePrev() {
+            /*slidePrev() {
                 this.$refs.carousel.slidePrev();
             },
             slideNext() {
@@ -70,6 +78,12 @@
             },
             aft(payload) {
                 console.log(`After slide `, payload)
+            },*/
+
+            getCurentVal(payload) {
+                console.log(`After slide `, payload.currentSlide)
+                console.log(`this.nameVarVall `, this.nameVarVall)
+                this.$store.commit(this.nameVarVall, this.slides[payload.currentSlide])
             }
         }
     }
@@ -98,12 +112,13 @@
 
     .slide-border {
         position: absolute;
+        top: calc(50% - (100%/5)/2);
 
         border-right: 1px solid #999999;
         border-top: 1px solid #999;
         border-bottom: 1px solid #999;
         width: 100%;
-        height: calc(100%/2.5);
+        height: calc(100%/5);
     }
 
     /*.is-current {
